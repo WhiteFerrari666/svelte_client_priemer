@@ -8,6 +8,8 @@
     import Blog from "./components/Blog.svelte";
     import BackButton from "./components/BackButton.svelte";
     import ForwardButton from "./components/ForwardButton.svelte";
+    import Logout from "./components/Logout.svelte";
+    import Login from "./components/Login.svelte";
 
     export let name: string;
     let clicked = 0;
@@ -15,20 +17,24 @@
 
 <Router>
     <header>
-        <h1>History</h1>
+        <h1>Friends and Places</h1>
 
         <nav>
             <BackButton />
             <ForwardButton />
             <Link to="/">Base</Link>
+            <Link to="login">Login</Link>
             <Link to="home">Home</Link>
             <Link to="about">About</Link>
             <Link to="blog">Blog</Link>
+            <Link to="logout" on:click>Logout</Link>
         </nav>
     </header>
 
     <main>
         <Route path="blog/*blogRoute" component={Blog} />
+
+        <Route path="login" component={Login}/>
 
         <Route path="home">
             <h3>Home</h3>
@@ -38,6 +44,11 @@
         <Route path="about">
             <h3>About</h3>
             <p>That's what it's all about!</p>
+        </Route>
+
+        <Route path="logout" component="{Logout}" primary={false}>
+            <h3>Logout</h3>
+            <p>Bye bye!</p>
         </Route>
 
         <Route>
