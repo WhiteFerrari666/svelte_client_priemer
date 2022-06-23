@@ -2,74 +2,59 @@
     import MyFirstComponent from "./components/MyFirstComponent.svelte";
     import Button from '@smui/button';
     import Extended from '@smui/button';
-    import Fab, {Label, Icon} from '@smui/fab';
-
-    import { Router, Route, Link } from "svelte-navigator";
-    import Blog from "./components/Blog.svelte";
-    import BackButton from "./components/BackButton.svelte";
-    import ForwardButton from "./components/ForwardButton.svelte";
+    import Fab, {Icon, Label} from '@smui/fab';
     import Logout from "./components/Logout.svelte";
     import Login from "./components/Login.svelte";
     import FapTestcall from "./components/FapTestcall.svelte";
     import Register from "./components/Register.svelte";
     import DefaultTheme from "./components/DefaultTheme.svelte";
+    import TabBar from '@smui/tab-bar';
+    import Tab from '@smui/tab';
 
     export let name: string;
+
+    let home = "Home";
+    let register = "Registrierung";
+    let login = "Login";
+    let testcall = "FAP-Testcall";
+    let logout = "Logout";
+    let about = "About";
     let clicked = 0;
+    let active = "Home";
+    let tabs = [home, register, login, testcall, logout, about];
+
 </script>
 
 <DefaultTheme/>
 <main>
-    <Router>
-        <header>
-            <h1>Friends and Places</h1>
+    <header>
+        <h1>Friends and Places</h1>
+    </header>
 
-            <nav>
-                <BackButton />
-                <ForwardButton />
-                <Link to="/">Base</Link>
-                <Link to="register">Registrierung</Link>
-                <Link to="login">Login</Link>
-                <Link to="home">Home</Link>
-                <Link to="about">About</Link>
-                <Link to="blog">Blog</Link>
-                <Link to="logout">Logout</Link>
-                <Link to="testcall">FAP-Testcall</Link>
-            </nav>
-        </header>
+    <div>
+        <!--   bind-Variable MUSS active heißen - wird sonst nicht gefunden/aktualisiert!     -->
+        <TabBar tabs={tabs} let:tab bind:active>
+            <Tab {tab}>
+                <Label>{tab}</Label>
+            </Tab>
+        </TabBar>
 
-        <div>
-            <Route path="blog/*blogRoute" component={Blog} />
+        {#if active === home}
+            <p>Happy FAPping!</p>
+        {:else if active === register}
+            <Register/>
+        {:else if active === login}
+            <Login/>
+        {:else if active === logout}
+            <Logout/>
+        {:else if active === testcall}
+            <FapTestcall/>
+        {:else if active === about}
+            <p>Wahnsinns-Projekt!!</p>
+        {/if}
+    </div>
 
-            <Route path="register" component={Register}/>
-
-            <Route path="login" component={Login}/>
-
-            <Route path="home">
-                <h3>Home</h3>
-                <p>Home sweet home...</p>
-            </Route>
-
-            <Route path="about">
-                <h3>About</h3>
-                <p>That's what it's all about!</p>
-            </Route>
-
-            <Route path="logout" component="{Logout}" primary={false}>
-                <h3>Logout</h3>
-                <p>Bye bye!</p>
-            </Route>
-
-            <Route path="testcall" component="{FapTestcall}"/>
-
-            <Route>
-                <h3>Default</h3>
-                <p>No Route could be matched.</p>
-            </Route>
-        </div>
-    </Router>
-
-<!-- Hab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
+    <!-- Hab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
     <h1>Hello {name}!</h1>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
     <MyFirstComponent/>
@@ -97,7 +82,6 @@
 
     <pre class="status">Clicked: {clicked}</pre>
 </main>
-
 
 
 <style>
