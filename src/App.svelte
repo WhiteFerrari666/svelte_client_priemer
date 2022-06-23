@@ -36,7 +36,7 @@
             </nav>
         </header>
 
-        <main>
+        <div>
             <Route path="blog/*blogRoute" component={Blog} />
 
             <Route path="login" component={Login}/>
@@ -62,7 +62,7 @@
                 <h3>Default</h3>
                 <p>No Route could be matched.</p>
             </Route>
-        </main>
+        </div>
     </Router>
 
 <!-- Hab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
