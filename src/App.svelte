@@ -10,6 +10,7 @@
     import ForwardButton from "./components/ForwardButton.svelte";
     import Logout from "./components/Logout.svelte";
     import Login from "./components/Login.svelte";
+    import FapTestcall from "./components/FapTestcall.svelte";
 
     export let name: string;
     let clicked = 0;
@@ -27,7 +28,8 @@
             <Link to="home">Home</Link>
             <Link to="about">About</Link>
             <Link to="blog">Blog</Link>
-            <Link to="logout" on:click>Logout</Link>
+            <Link to="logout">Logout</Link>
+            <Link to="testcall">FAP-Testcall</Link>
         </nav>
     </header>
 
@@ -50,6 +52,8 @@
             <h3>Logout</h3>
             <p>Bye bye!</p>
         </Route>
+
+        <Route path="testcall" component="{FapTestcall}"/>
 
         <Route>
             <h3>Default</h3>
