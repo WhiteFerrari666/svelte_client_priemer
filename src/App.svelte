@@ -11,13 +11,14 @@
     import Logout from "./components/Logout.svelte";
     import Login from "./components/Login.svelte";
     import FapTestcall from "./components/FapTestcall.svelte";
+    import Register from "./components/Register.svelte";
+    import DefaultTheme from "./components/DefaultTheme.svelte";
 
     export let name: string;
     let clicked = 0;
 </script>
 
-
-
+<DefaultTheme/>
 <main>
     <Router>
         <header>
@@ -27,6 +28,7 @@
                 <BackButton />
                 <ForwardButton />
                 <Link to="/">Base</Link>
+                <Link to="register">Registrierung</Link>
                 <Link to="login">Login</Link>
                 <Link to="home">Home</Link>
                 <Link to="about">About</Link>
@@ -38,6 +40,8 @@
 
         <div>
             <Route path="blog/*blogRoute" component={Blog} />
+
+            <Route path="register" component={Register}/>
 
             <Route path="login" component={Login}/>
 
