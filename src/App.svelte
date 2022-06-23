@@ -10,83 +10,95 @@
     import ForwardButton from "./components/ForwardButton.svelte";
     import Logout from "./components/Logout.svelte";
     import Login from "./components/Login.svelte";
+    import FapTestcall from "./components/FapTestcall.svelte";
+    import Register from "./components/Register.svelte";
+    import DefaultTheme from "./components/DefaultTheme.svelte";
 
     export let name: string;
     let clicked = 0;
 </script>
 
-<Router>
-    <header>
-        <h1>Friends and Places</h1>
-
-        <nav>
-            <BackButton />
-            <ForwardButton />
-            <Link to="/">Base</Link>
-            <Link to="login">Login</Link>
-            <Link to="home">Home</Link>
-            <Link to="about">About</Link>
-            <Link to="blog">Blog</Link>
-            <Link to="logout" on:click>Logout</Link>
-        </nav>
-    </header>
-
-    <main>
-        <Route path="blog/*blogRoute" component={Blog} />
-
-        <Route path="login" component={Login}/>
-
-        <Route path="home">
-            <h3>Home</h3>
-            <p>Home sweet home...</p>
-        </Route>
-
-        <Route path="about">
-            <h3>About</h3>
-            <p>That's what it's all about!</p>
-        </Route>
-
-        <Route path="logout" component="{Logout}" primary={false}>
-            <h3>Logout</h3>
-            <p>Bye bye!</p>
-        </Route>
-
-        <Route>
-            <h3>Default</h3>
-            <p>No Route could be matched.</p>
-        </Route>
-    </main>
-</Router>
-
-
+<DefaultTheme/>
 <main>
+    <Router>
+        <header>
+            <h1>Friends and Places</h1>
+
+            <nav>
+                <BackButton />
+                <ForwardButton />
+                <Link to="/">Base</Link>
+                <Link to="register">Registrierung</Link>
+                <Link to="login">Login</Link>
+                <Link to="home">Home</Link>
+                <Link to="about">About</Link>
+                <Link to="blog">Blog</Link>
+                <Link to="logout">Logout</Link>
+                <Link to="testcall">FAP-Testcall</Link>
+            </nav>
+        </header>
+
+        <div>
+            <Route path="blog/*blogRoute" component={Blog} />
+
+            <Route path="register" component={Register}/>
+
+            <Route path="login" component={Login}/>
+
+            <Route path="home">
+                <h3>Home</h3>
+                <p>Home sweet home...</p>
+            </Route>
+
+            <Route path="about">
+                <h3>About</h3>
+                <p>That's what it's all about!</p>
+            </Route>
+
+            <Route path="logout" component="{Logout}" primary={false}>
+                <h3>Logout</h3>
+                <p>Bye bye!</p>
+            </Route>
+
+            <Route path="testcall" component="{FapTestcall}"/>
+
+            <Route>
+                <h3>Default</h3>
+                <p>No Route could be matched.</p>
+            </Route>
+        </div>
+    </Router>
+
+<!-- Hab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
     <h1>Hello {name}!</h1>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
     <MyFirstComponent/>
     <Button/>
     <Extended/>
+
+    <Fab on:click={() => clicked++} extended>
+        <Icon class="material-icons">favorite</Icon>
+        <Label>Extended</Label>
+    </Fab>
+    <Fab color="primary" on:click={() => clicked++} extended>
+        <Icon class="material-icons">favorite</Icon>
+        <Label>Extended</Label>
+    </Fab>
+    <div class="margins">
+        <Fab on:click={() => clicked++} extended>
+            <Label>Extended W/o Icon</Label>
+        </Fab>
+    </div>
+    <div class="margins">
+        <Fab color="primary" on:click={() => clicked++} extended>
+            <Label>Extended W/o Icon</Label>
+        </Fab>
+    </div>
+
+    <pre class="status">Clicked: {clicked}</pre>
 </main>
 
-<Fab on:click={() => clicked++} extended>
-    <Icon class="material-icons">favorite</Icon>
-    <Label>Extended</Label>
-</Fab>
-<Fab color="primary" on:click={() => clicked++} extended>
-    <Icon class="material-icons">favorite</Icon>
-    <Label>Extended</Label>
-</Fab>
-<div class="margins">
-    <Fab on:click={() => clicked++} extended>
-        <Label>Extended W/o Icon</Label>
-    </Fab>
-</div>
-<div class="margins">
-    <Fab color="primary" on:click={() => clicked++} extended>
-        <Label>Extended W/o Icon</Label>
-    </Fab>
-</div>
 
-<pre class="status">Clicked: {clicked}</pre>
 
 <style>
     main {

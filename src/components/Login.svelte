@@ -15,15 +15,18 @@
     }
 
     async function handleFapLogin() {
-        const res = await fetch('http://localhost:8080/FAPServer/service/fapservice/login',
+        const res = await fetch('http://localhost:8088/FAPServer/service/fapservice/login',
         {
             method: 'POST',
-                body: JSON.stringify({
-            loginName: username,
-            passwort: {
-                passwort: password
+            body: JSON.stringify({
+                loginName: username,
+                passwort: {
+                    passwort: password
             }
-        })
+        }),
+            headers: {
+                'Content-Type': 'application/json'
+            },
         })
 
         console.log('logged in user', username);
@@ -31,13 +34,15 @@
         if (res.ok) {
             return username;
         } else {
-            throw new Error(username);
+            console.log("ETWAS HAT NICHT FUNKTIONIERT!")
+            console.log(res)
+            // throw new Error(username);
         }
     }
 </script>
 
-<h3>Login</h3>
-<form on:submit={handleSubmit}>
+<h3 id="Login">Login</h3>
+<form on:submit={() => handleFapLogin()}>
     <input
             bind:value={username}
             type="text"
