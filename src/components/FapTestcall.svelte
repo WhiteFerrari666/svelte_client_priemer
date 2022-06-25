@@ -21,8 +21,12 @@
         responseOutput = "Noch keine Antwort erhalten!";
     }
 </script>
-
-<h3 id="testcall">Testcall zum FAP-Server</h3>
-<Button color="secondary" variant="raised" on:click={() => handleTestCall()}>Test!</Button>
-<Button variant="raised" on:click={() => resetResult()}>Reset</Button>
+<div>
+    <h3 id="testcall">Testcall zum FAP-Server</h3>
+    <span>Der FAP-Server wird aktuell unter der Adresse {$fapServerBaseURL} angesprochen.</span>
+</div>
+<div>
+    <Button color="secondary" variant="raised" on:click={() => handleTestCall()}>Test!</Button>
+    <Button variant="raised" on:click={() => resetResult()}>Reset</Button>
+</div>
 <label for="testcall">{responseOutput}</label>
