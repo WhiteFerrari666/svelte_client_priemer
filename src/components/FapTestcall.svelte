@@ -23,8 +23,9 @@
 </script>
 <div>
     <h3 id="testcall">Testcall zum FAP-Server</h3>
-    <span>Der FAP-Server wird aktuell unter der Adresse {$fapServerBaseURL} angesprochen.</span>
+    <span>Der FAP-Server wird aktuell unter der Adresse <b>{$fapServerBaseURL}</b> angesprochen.</span>
 </div>
+<br>
 <div>
     <Button color="secondary" variant="raised" on:click={() => handleTestCall()}>Test!</Button>
     <Button variant="raised" on:click={() => resetResult()}>Reset</Button>
