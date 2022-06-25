@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {fapServerBaseURL, user} from "../../scripts/store";
+    import {currentSession, fapServerBaseURL, user} from "../../scripts/store";
     import Button from "@smui/button";
     import Textfield from "@smui/textfield";
     import {Icon, Label} from "@smui/fab";
@@ -27,16 +27,19 @@
             })
             .then(res => res.json())
             .then(data => {
-                if (data.sessionID !== "" && data.sessionID !== undefined) {
+                let sessionID = data.sessionID;
+                if (sessionID !== "" && sessionID !== undefined) {
                     console.log('logged in user', username);
                     snackbarText = "Login erfolgreich"
                     $user = username;
+                    $currentSession = sessionID;
                 } else {
                     snackbarText = "Login fehlgeschlagen";
-                    console.log("ETWAS HAT NICHT FUNKTIONIERT!")
-                    console.log(data)
+                    console.log(snackbarText);
                     // throw new Error(username);
                 }
+            }).catch((error) => {
+                console.error("ETWAS HAT NICHT FUNKTIONIERT", error);
             })
         // nicht von der Warnung irritieren lassen, das open() funzt.
         feedbackSnackbar.open();
