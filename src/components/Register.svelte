@@ -8,7 +8,7 @@
     import Actions from "@smui/dialog/src/Actions";
     import type {SnackbarComponentDev} from '@smui/snackbar';
     import Snackbar from '@smui/snackbar';
-    import {fapServerBaseURL} from '../../scripts/store';
+    import {fapServerBaseURL} from '../../scripts/stores';
 
     // Hilfsvariable für Daten-Dialog
     let open = false;

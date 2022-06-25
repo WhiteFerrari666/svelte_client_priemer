@@ -2,7 +2,7 @@
 
 <script lang="ts">
     import Button from '@smui/button';
-    import {fapServerBaseURL} from '../../scripts/store';
+    import {fapServerBaseURL} from '../../scripts/stores';
 
     let responseOutput = "Noch keine Antwort erhalten!";
 

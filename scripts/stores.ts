@@ -7,22 +7,27 @@ import {readable, writable} from "svelte/store";
 export const fapServerBaseURL = readable("http://localhost:8088/FAPServer/service/fapservice");
 
 
-// eingeloggter User
+// eingeloggter User, auch in localStorage ablegen wg. PageReload
+const storedUser = localStorage.getItem("user");
 export const user =
-    writable("", () => {
+    writable(storedUser, () => {
         return () => console.log("user cleared")
     });
 
 user.subscribe(value => {
+    localStorage.setItem("user", value);
     console.log("user set: " + value);
 })
 
-// aktuelle SessionID
+// aktuelle SessionID, auch in localStorage ablegen wg. PageReload
+const storedSession = localStorage.getItem("session");
 export const currentSession =
-    writable("", () => {
+    writable(storedSession, () => {
         return () => console.log("session cleared");
     });
 
 currentSession.subscribe(value => {
+    localStorage.setItem("session", value);
     console.log("new session set: " + value);
 })
+

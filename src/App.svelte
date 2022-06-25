@@ -10,7 +10,7 @@
     import DefaultTheme from "./components/DefaultTheme.svelte";
     import TabBar from '@smui/tab-bar';
     import Tab from '@smui/tab';
-    import {user} from "../scripts/store";
+    import {user} from "../scripts/stores";
 
     export let name: string;
 
@@ -30,7 +30,11 @@
 <main>
     <header>
         <h1>Friends and Places</h1>
-        <span>Eingeloggter User: {$user}</span>
+        {#if $user}
+            <span>Eingeloggter User: {$user}</span>
+        {:else}
+            <span>Zurzeit ist niemand eingeloggt</span>
+        {/if}
     </header>
     <br>
     <br>
@@ -45,7 +49,7 @@
         <br>
 
         {#if active === home}
-            <p>Happy FAPping!</p>
+            <h3>Happy FAPping!</h3>
         {:else if active === register}
             <Register/>
         {:else if active === login}
@@ -55,12 +59,13 @@
         {:else if active === testcall}
             <FapTestcall/>
         {:else if active === about}
-            <p>Wahnsinns-Projekt!!</p>
+            <h3>Wahnsinns-Projekt!!</h3>
         {/if}
     </div>
 
-    <!-- Hab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
+    <!-- ab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
     <h1>Hello {name}!</h1>
+    <p>hier ein paar Komponenten-Demos</p>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
     <MyFirstComponent/>
     <Button/>

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {currentSession, fapServerBaseURL, user} from "../../scripts/store";
+    import {currentSession, fapServerBaseURL, user} from "../../scripts/stores";
     import Button from "@smui/button";
     import Textfield from "@smui/textfield";
     import {Icon, Label} from "@smui/fab";
@@ -15,15 +15,15 @@
         await fetch($fapServerBaseURL + '/login',
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     loginName: username,
                     passwort: {
                         passwort: password
                     }
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                })
             })
             .then(res => res.json())
             .then(data => {
@@ -40,7 +40,7 @@
                 }
             }).catch((error) => {
                 console.error("ETWAS HAT NICHT FUNKTIONIERT", error);
-            })
+            });
         // nicht von der Warnung irritieren lassen, das open() funzt.
         feedbackSnackbar.open();
     }
