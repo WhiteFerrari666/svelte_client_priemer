@@ -14,7 +14,6 @@
     let open = false;
 
     let feedbackSnackbar: SnackbarComponentDev;
-    let snackbarWithoutClose: SnackbarComponentDev;
     let snackbarText = "";
 
     let successHintVisible = false;
