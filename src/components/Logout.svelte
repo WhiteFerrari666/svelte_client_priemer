@@ -39,12 +39,14 @@
                 console.error("ETWAS HAT NICHT FUNKTIONIERT", error);
             });
         // nicht von der Warnung irritieren lassen, das open() funzt.
+        // TODO: warum öffnet sich die Snackbar nicht?
+        //  Es ist doch alles genau so wie in den anderen Komponenten? :-C
         feedbackSnackbar.open();
     }
 </script>
 
 
-<div class="Logout">
+<div class="logout">
     <Button variant="raised" on:click={handleLogout}>
         <Label>Logout</Label>
         <Icon class="material-icons">logout</Icon>
