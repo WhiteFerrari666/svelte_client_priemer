@@ -10,6 +10,7 @@
     import DefaultTheme from "./components/DefaultTheme.svelte";
     import TabBar from '@smui/tab-bar';
     import Tab from '@smui/tab';
+    import {user} from "../scripts/store";
 
     export let name: string;
 
@@ -29,8 +30,10 @@
 <main>
     <header>
         <h1>Friends and Places</h1>
+        <span>Eingeloggter User: {$user}</span>
     </header>
-
+    <br>
+    <br>
     <div>
         <!--   bind-Variable MUSS active heißen - wird sonst nicht gefunden/aktualisiert!     -->
         <TabBar tabs={tabs} let:tab bind:active>
@@ -38,6 +41,8 @@
                 <Label>{tab}</Label>
             </Tab>
         </TabBar>
+
+        <br>
 
         {#if active === home}
             <p>Happy FAPping!</p>
@@ -93,7 +98,7 @@
     }
 
     h1 {
-        color: #ff3e00;
+        color: #670be5;
         text-transform: uppercase;
         font-size: 4em;
         font-weight: 100;

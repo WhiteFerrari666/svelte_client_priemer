@@ -1,11 +1,18 @@
-<script>
-    import {fapServerBaseURL} from "../../scripts/store";
+<script lang="ts">
+    import {fapServerBaseURL, user} from "../../scripts/store";
+    import Button from "@smui/button";
+    import Textfield from "@smui/textfield";
+    import {Icon, Label} from "@smui/fab";
+    import Snackbar, {SnackbarComponentDev} from "@smui/snackbar";
 
-    let username;
-    let password;
+    let username = "";
+    let password = "";
+
+    let feedbackSnackbar: SnackbarComponentDev;
+    let snackbarText = "";
 
     async function handleFapLogin() {
-        const res = await fetch($fapServerBaseURL + '/login',
+        await fetch($fapServerBaseURL + '/login',
             {
                 method: 'POST',
                 body: JSON.stringify({
@@ -18,34 +25,37 @@
                     'Content-Type': 'application/json'
                 },
             })
-
-        console.log('logged in user', username);
-
-        if (res.ok) {
-            return username;
-        } else {
-            console.log("ETWAS HAT NICHT FUNKTIONIERT!")
-            console.log(res)
-            // throw new Error(username);
-        }
+            .then(res => res.json())
+            .then(data => {
+                if (data.sessionID !== "" && data.sessionID !== undefined) {
+                    console.log('logged in user', username);
+                    snackbarText = "Login erfolgreich"
+                    $user = username;
+                } else {
+                    snackbarText = "Login fehlgeschlagen";
+                    console.log("ETWAS HAT NICHT FUNKTIONIERT!")
+                    console.log(data)
+                    // throw new Error(username);
+                }
+            })
+        // nicht von der Warnung irritieren lassen, das open() funzt.
+        feedbackSnackbar.open();
     }
 </script>
 
-<h3 id="Login">Login</h3>
-<form on:submit={() => handleFapLogin()}>
-    <input
-            bind:value={username}
-            type="text"
-            name="username"
-            placeholder="Username"
-    />
+<!-- TODO: vernünftig stylen mit CSS statt linebreaks -->
+<div class="login">
+    <Textfield bind:value={username} label="Username"/>
     <br/>
-    <input
-            bind:value={password}
-            type="password"
-            name="password"
-            placeholder="Password"
-    />
+    <Textfield bind:value={password} label="Passwort"/>
     <br/>
-    <button type="submit">Login</button>
-</form>
+    <br/>
+    <Button variant="raised" on:click={handleFapLogin}>
+        <Label>Login</Label>
+        <Icon class="material-icons">login</Icon>
+    </Button>
+</div>
+
+<Snackbar bind:this={feedbackSnackbar} labelText={snackbarText} timeout={3}>
+    <Label/>
+</Snackbar>
