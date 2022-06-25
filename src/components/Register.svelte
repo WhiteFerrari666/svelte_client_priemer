@@ -36,29 +36,27 @@
     async function sendRegistration() {
         snackbarText = "";
 
-        function getUserDataJson() {
-            return JSON.stringify({
-                loginName: username,
-                passwort: {
-                    passwort: password
-                },
-                vorname: vorname,
-                nachname: nachname,
-                strasse: strasse,
-                plz: plz,
-                ort: ort,
-                land: land,
-                telefon: telefon,
-                email: {
-                    adresse: email
-                }
-            });
-        }
+        let userDataJson = JSON.stringify({
+            loginName: username,
+            passwort: {
+                passwort: password
+            },
+            vorname: vorname,
+            nachname: nachname,
+            strasse: strasse,
+            plz: plz,
+            ort: ort,
+            land: land,
+            telefon: telefon,
+            email: {
+                adresse: email
+            }
+        });
 
         await fetch('http://localhost:8088/FAPServer/service/fapservice/addUser',
             {
                 method: 'POST',
-                body: getUserDataJson(),
+                body: userDataJson,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -66,7 +64,7 @@
             .then(res => res.json())
             .then(data => {
                 if (data.ergebnis === true) {
-                    console.log("registered new user:", getUserDataJson());
+                    console.log("registered new user:", userDataJson);
                     snackbarText = "Registrierung erfolgreich!";
                 } else {
                     console.log(data);
