@@ -1,5 +1,5 @@
 <script>
-    import {user} from "../../scripts/store.ts";
+    import {fapServerBaseURL, user} from "../../scripts/store.ts";
 
     let loginName = "";
     let sitzung = null;
@@ -33,7 +33,7 @@
             return;
         }
 
-        const res = await fetch('http://localhost:8080/FAPServer/service/fapservice/logout', {
+        const res = await fetch($fapServerBaseURL + '/logout', {
             method: 'POST',
             body: JSON.stringify({
                 loginName,

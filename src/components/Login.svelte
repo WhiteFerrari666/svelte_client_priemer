@@ -1,10 +1,11 @@
 <script>
+    import {fapServerBaseURL} from "../../scripts/store";
 
     let username;
     let password;
 
     async function handleFapLogin() {
-        const res = await fetch('http://localhost:8088/FAPServer/service/fapservice/login',
+        const res = await fetch($fapServerBaseURL + '/login',
             {
                 method: 'POST',
                 body: JSON.stringify({

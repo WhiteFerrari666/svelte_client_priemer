@@ -8,7 +8,7 @@
     import Actions from "@smui/dialog/src/Actions";
     import type {SnackbarComponentDev} from '@smui/snackbar';
     import Snackbar from '@smui/snackbar';
-
+    import {fapServerBaseURL} from '../../scripts/store';
 
     // Hilfsvariable für Daten-Dialog
     let open = false;
@@ -53,7 +53,7 @@
             }
         });
 
-        await fetch('http://localhost:8088/FAPServer/service/fapservice/addUser',
+        await fetch($fapServerBaseURL + '/addUser',
             {
                 method: 'POST',
                 body: userDataJson,

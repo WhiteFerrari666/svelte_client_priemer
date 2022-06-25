@@ -2,12 +2,13 @@
 
 <script lang="ts">
     import Button from '@smui/button';
-
+    import {fapServerBaseURL} from '../../scripts/store';
 
     let responseOutput = "Noch keine Antwort erhalten!";
 
     async function handleTestCall() {
-        const res = await fetch('http://localhost:8088/FAPServer/service/fapservice');
+
+        const res = await fetch($fapServerBaseURL);
         if (res.ok) {
             responseOutput = await res.text();
             console.log(responseOutput);
