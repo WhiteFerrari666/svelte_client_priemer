@@ -97,7 +97,6 @@
                 <Textfield bind:value={username} label="Username" required>
                     <!--            <HelperText slot="helper">Helper Text</HelperText>-->
                 </Textfield>
-                <!--        <pre class="status">Value: {valueA}</pre>-->
             </div>
             <div>
                 <Textfield bind:value={password} label="Passwort" required/>
