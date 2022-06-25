@@ -1,65 +1,56 @@
-<script>
-    import {fapServerBaseURL, user} from "../../scripts/store.ts";
+<script lang="ts">
+    import {currentSession, fapServerBaseURL, user} from "../../scripts/stores.ts";
+    import Button from "@smui/button";
+    import {Icon, Label} from "@smui/fab";
+    import Snackbar, {SnackbarComponentDev} from "@smui/snackbar";
 
-    let loginName = "";
-    let sitzung = null;
-
-    function getSessionId() {
-        let sessionCookie = document.cookie.match("hier Bezeichnung des Session Cookies");
-        let sessionId = "";
-        if (sessionCookie != null) {
-            if (sessionCookie instanceof Array) {
-                sessionId = sessionCookie[0].substring(11);
-            } else {
-                sessionId = sessionCookie.substring(11);
-            }
-        }
-        return sessionId;
-    }
+    let feedbackSnackbar: SnackbarComponentDev;
+    let snackbarText = "";
 
     async function handleLogout() {
-        if ($user === null) {
-            console.log("USER STORE IS NULL")
-            return;
-        }
-        console.log($user);
-        loginName = $user["username"];
-        sitzung = getSessionId()
-
-        console.log(loginName);
-
-        if (loginName === "") {
-            console.log("no user set!");
+        if ($user === "" || $currentSession === "") {
+            console.log("no user or session set! Login first!");
             return;
         }
 
-        const res = await fetch($fapServerBaseURL + '/logout', {
-            method: 'POST',
-            body: JSON.stringify({
-                loginName,
-                sitzung
+        await fetch($fapServerBaseURL + '/logout',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    loginName: $user,
+                    sitzung: $currentSession
+                })
             })
-        })
-
-        const json = await res.json();
-        let result = JSON.stringify(json);
-        console.log(result);
-        console.log("Logged out user" + loginName);
-        $user = resetUser();
-    }
-
-    function resetUser() {
-        return {
-            username: "",
-            password: ""
-        };
+            .then(res => res.json())
+            .then(data => {
+                if (data.ergebnis === true) {
+                    console.log("Logged out user " + $user);
+                    snackbarText = "Bye bye!"
+                    $user = "";
+                    $currentSession = "";
+                } else {
+                    snackbarText = "Fehler beim Logout";
+                    console.log(snackbarText);
+                }
+            }).catch((error) => {
+                console.error("ETWAS HAT NICHT FUNKTIONIERT", error);
+            });
+        // nicht von der Warnung irritieren lassen, das open() funzt.
+        feedbackSnackbar.open();
     }
 </script>
 
 
 <div class="Logout">
-    <button on:click={handleLogout}>
-        Logout
-    </button>
-    <p>bye bye!</p>
+    <Button variant="raised" on:click={handleLogout}>
+        <Label>Logout</Label>
+        <Icon class="material-icons">logout</Icon>
+    </Button>
 </div>
+
+<Snackbar bind:this={feedbackSnackbar} labelText={snackbarText} timeout={3}>
+    <Label/>
+</Snackbar>
