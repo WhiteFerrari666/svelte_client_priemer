@@ -40,6 +40,7 @@
                 }
             }).catch((error) => {
                 console.error("ETWAS HAT NICHT FUNKTIONIERT", error);
+                snackbarText = "Login fehlgeschlagen";
             });
         // nicht von der Warnung irritieren lassen, das open() funzt.
         feedbackSnackbar.open();
