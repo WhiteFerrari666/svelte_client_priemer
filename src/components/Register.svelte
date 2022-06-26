@@ -16,8 +16,6 @@
     let feedbackSnackbar: SnackbarComponentDev;
     let snackbarText = "";
 
-    let successHintVisible = false;
-    // $: disabled = focused
     let username = "";
     let password = "";
     let vorname = "";

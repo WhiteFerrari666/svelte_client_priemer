@@ -36,7 +36,6 @@
                 } else {
                     snackbarText = "Login fehlgeschlagen";
                     console.log(snackbarText);
-                    // throw new Error(username);
                 }
             }).catch((error) => {
                 console.error("ETWAS HAT NICHT FUNKTIONIERT", error);
