@@ -139,7 +139,7 @@
             <Button>
                 <Label>Abbrechen</Label>
             </Button>
-            <Button variant="raised" on:click={sendRegistration}>
+            <Button variant="raised" on:click={() => sendRegistration()}>
                 <Label>Absenden</Label>
                 <Icon class="material-icons">send</Icon>
             </Button>
