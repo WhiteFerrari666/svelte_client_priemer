@@ -1,4 +1,9 @@
-export async function getOrtForPlz(baseUrl: string, plz: string): Promise<string> {
+import {fapServerBaseURL} from '../../scripts/stores';
+import {get} from "svelte/store";
+
+const baseUrl = get(fapServerBaseURL);
+
+export async function getOrtForPlz(plz: string): Promise<string> {
     let ortResults: OrtResponse[];
     let result: OrtResponse;
 
@@ -29,4 +34,20 @@ interface OrtResponse {
     "ISO3166-2": string,
     "placeName": string,
     "lat": string
+}
+
+export async function isUsernameVerfuegbar(username: string): Promise<boolean> {
+    let result: boolean;
+
+    await fetch(baseUrl + '/checkLoginName?id=' + username, {
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            result = data.ergebnis;
+        })
+    console.log("Username " + username + " bereits vergeben: " + result);
+    return result;
 }

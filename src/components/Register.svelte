@@ -9,7 +9,7 @@
     import type {SnackbarComponentDev} from '@smui/snackbar';
     import Snackbar from '@smui/snackbar';
     import {fapServerBaseURL} from '../../scripts/stores';
-    import {getOrtForPlz} from "../service/FapServerQueryService";
+    import {getOrtForPlz, isUsernameVerfuegbar} from "../service/FapServerQueryService";
 
     // Hilfsvariable für Daten-Dialog
     let open = false;
@@ -77,7 +77,14 @@
     }
 
     async function getOrtsnameFromFapServer(plz: string) {
-        ort = await getOrtForPlz($fapServerBaseURL, plz);
+        ort = await getOrtForPlz(plz);
+    }
+
+    async function checkUsername(username: string) {
+        if (!await isUsernameVerfuegbar(username)) {
+            snackbarText = "Username ist bereits vergeben!";
+            feedbackSnackbar.open();
+        }
     }
 
 </script>
@@ -98,7 +105,7 @@
                         {/each}
                     </Select>
                 </div>
-                <Textfield bind:value={username} label="Username" required>
+                <Textfield bind:value={username} label="Username" on:focusout={() => checkUsername(username)} required>
                     <!--            <HelperText slot="helper">Helper Text</HelperText>-->
                 </Textfield>
             </div>
