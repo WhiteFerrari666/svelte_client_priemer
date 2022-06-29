@@ -30,7 +30,7 @@
                 let sessionID = data.sessionID;
                 if (sessionID !== "" && sessionID !== undefined) {
                     console.log('logged in user', username);
-                    snackbarText = "Login erfolgreich"
+                    snackbarText = "Login erfolgreich";
                     $user = username;
                     $currentSession = sessionID;
                 } else {
