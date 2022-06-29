@@ -3,8 +3,20 @@
 <script lang="ts">
     import Button from '@smui/button';
     import {fapServerBaseURL} from '../../scripts/stores';
+    import {getOrtForPlz} from "../service/FapApiService.js";
 
     let responseOutput = "Noch keine Antwort erhalten!";
+    let responseOutputOrt = "";
+
+    let ortResult = "";
+
+    async function callFapApiForOrt() {
+        ortResult = await getOrtForPlz($fapServerBaseURL, "41238");
+    }
+
+    function resetOrt() {
+        ortResult = "";
+    }
 
     async function handleTestCall() {
 
@@ -31,3 +43,12 @@
     <Button variant="raised" on:click={() => resetResult()}>Reset</Button>
 </div>
 <label for="testcall">{responseOutput}</label>
+<br>
+<div>
+    <h3 id="ort">Ort from FAP für PLZ 41238</h3>
+    <Button color="secondary" variant="raised" on:click={() => callFapApiForOrt()}>
+        Do it!
+    </Button>
+    <Button variant="raised" on:click={() => resetOrt()}>Reset</Button>
+    <label for="ort">{ortResult}</label>
+</div>
