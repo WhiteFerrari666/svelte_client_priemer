@@ -3,7 +3,7 @@
 <script lang="ts">
     import Button from '@smui/button';
     import {fapServerBaseURL} from '../../scripts/stores';
-    import {getOrtForPlz} from "../service/FapApiService.js";
+    import {getOrtForPlz} from "../service/FapServerQueryService";
 
     let responseOutput = "Noch keine Antwort erhalten!";
     let responseOutputOrt = "";

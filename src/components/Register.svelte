@@ -9,6 +9,7 @@
     import type {SnackbarComponentDev} from '@smui/snackbar';
     import Snackbar from '@smui/snackbar';
     import {fapServerBaseURL} from '../../scripts/stores';
+    import {getOrtForPlz} from "../service/FapServerQueryService";
 
     // Hilfsvariable für Daten-Dialog
     let open = false;
@@ -74,6 +75,11 @@
         // nicht von der Warnung irritieren lassen, das open() funzt.
         feedbackSnackbar.open();
     }
+
+    async function getOrtsnameFromFapServer(plz: string) {
+        ort = await getOrtForPlz($fapServerBaseURL, plz);
+    }
+
 </script>
 
 <Button variant="raised" on:click={() => (open = true)}>
@@ -109,7 +115,7 @@
                 <Textfield bind:value={strasse} label="Straße" required/>
             </div>
             <div>
-                <Textfield bind:value={plz} label="PLZ" required/>
+                <Textfield bind:value={plz} label="PLZ" on:focusout={() => getOrtsnameFromFapServer(plz)} required/>
             </div>
             <div>
                 <Textfield bind:value={ort} label="Ort" required/>
