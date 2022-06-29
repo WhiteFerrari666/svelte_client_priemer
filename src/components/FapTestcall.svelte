@@ -11,7 +11,7 @@
     let ortResult = "";
 
     async function callFapApiForOrt() {
-        ortResult = await getOrtForPlz($fapServerBaseURL, "41238");
+        ortResult = await getOrtForPlz("41238");
     }
 
     function resetOrt() {
