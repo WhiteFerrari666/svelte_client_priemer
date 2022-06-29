@@ -10,10 +10,9 @@ export async function getOrtForPlz(baseUrl: string, plz: string): Promise<string
         .then(res => res.json())
         .then(data => {
             ortResults = data.postalCodes as OrtResponse[];
-            console.log(ortResults);
             result = ortResults.filter(value => value.countryCode === "DE")[0];
         })
-    console.log(result.placeName);
+    console.log("Ort für PLZ " + plz + " laut FAP-Server: " + result.placeName);
     return result.placeName;
 }
 
