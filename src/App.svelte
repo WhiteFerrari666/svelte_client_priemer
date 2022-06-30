@@ -12,8 +12,6 @@
     import Tab from '@smui/tab';
     import {user} from "../scripts/stores";
 
-    export let name: string;
-
     let home = "Home";
     let register = "Registrierung";
     let login = "Login";
@@ -48,6 +46,7 @@
 
         <br>
 
+        <!-- je nachdem, welcher Tab oben ausgewählt ist, wird eine andere Unterkomponente angezeigt -->
         {#if active === home}
             <h3>Happy FAPping!</h3>
         {:else if active === register}
@@ -64,7 +63,7 @@
     </div>
 
     <!-- ab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
-    <h1>Hello {name}!</h1>
+    <h1>Hello World!</h1>
     <p>hier ein paar Komponenten-Demos</p>
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
     <MyFirstComponent/>

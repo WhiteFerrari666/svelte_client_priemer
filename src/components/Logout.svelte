@@ -7,6 +7,7 @@
     let feedbackSnackbar: SnackbarComponentDev;
     let snackbarText = "";
 
+    // User beim FAP-Server abmelden & User und Session aus dem Client entfernen
     async function handleLogout() {
         if ($user === "" || $currentSession === "") {
             console.log("no user or session set! Login first!");

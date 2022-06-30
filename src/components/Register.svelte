@@ -14,9 +14,11 @@
     // Hilfsvariable für Daten-Dialog
     let open = false;
 
+    // Feedback-Einblendungen in Form einer Snackbar
     let feedbackSnackbar: SnackbarComponentDev;
     let snackbarText = "";
 
+    // anzugebende Daten für die Registrierung
     let username = "";
     let password = "";
     let vorname = "";
@@ -34,6 +36,7 @@
     async function sendRegistration() {
         snackbarText = "";
 
+        // User-Daten als JSON verpacken...
         let userDataJson = JSON.stringify({
             loginName: username,
             passwort: {
@@ -51,6 +54,7 @@
             }
         });
 
+        // ... und per POST an den FAP-Server senden
         await fetch($fapServerBaseURL + '/addUser',
             {
                 method: 'POST',

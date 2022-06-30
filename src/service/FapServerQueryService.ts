@@ -1,8 +1,12 @@
+// Gebündelte Stelle für Zugriffe auf den FAP-Server
+
 import {fapServerBaseURL} from '../../scripts/stores';
 import {get} from "svelte/store";
 
+// Adresse des FAP-Servers
 const baseUrl = get(fapServerBaseURL);
 
+// Den zugehörigen Ort einer PLZ über den FAP-Server abfragen
 export async function getOrtForPlz(plz: string): Promise<string> {
     let ortResults: OrtResponse[];
     let result: OrtResponse;
@@ -15,12 +19,18 @@ export async function getOrtForPlz(plz: string): Promise<string> {
         .then(res => res.json())
         .then(data => {
             ortResults = data.postalCodes as OrtResponse[];
+            // es kommt immer ein Array aller Ergebnisse zurück.
+            // Wir wollen nur Ergebnisse aus Deutschland berücksichtigen.
+            // Das Ergebnis sollte eindeutig sein, wir entnehmen aus dem gefilterten Array
+            // somit das erste Element und sind glücklich.
             result = ortResults.filter(value => value.countryCode === "DE")[0];
         })
     console.log("Ort für PLZ " + plz + " laut FAP-Server: " + result.placeName);
     return result.placeName;
 }
 
+// Interface für die Struktur der Antwort des FAP-Servers definieren,
+// um Zugriff auf die Daten zu erleichtern
 interface OrtResponse {
     "adminCode2": string,
     "adminCode3": string,
@@ -36,6 +46,7 @@ interface OrtResponse {
     "lat": string
 }
 
+// Ist der übergebene Username noch frei (d.h. noch nicht vergeben)?
 export async function isUsernameVerfuegbar(username: string): Promise<boolean> {
     let result: boolean;
 
@@ -48,6 +59,6 @@ export async function isUsernameVerfuegbar(username: string): Promise<boolean> {
         .then(data => {
             result = data.ergebnis;
         })
-    console.log("Username " + username + " bereits vergeben: " + result);
+    console.log("Username " + username + " verfügbar: " + result);
     return result;
 }
