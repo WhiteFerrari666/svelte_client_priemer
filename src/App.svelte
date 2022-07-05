@@ -1,8 +1,5 @@
 <script lang="ts">
-    import MyFirstComponent from "./components/MyFirstComponent.svelte";
-    import Button from '@smui/button';
-    import Extended from '@smui/button';
-    import Fab, {Icon, Label} from '@smui/fab';
+    import {Label} from '@smui/fab';
     import Logout from "./components/Logout.svelte";
     import Login from "./components/Login.svelte";
     import FapTestcall from "./components/FapTestcall.svelte";
@@ -61,37 +58,7 @@
             <h3>Wahnsinns-Projekt!!</h3>
         {/if}
     </div>
-
-    <!-- ab hier kommt eigentlich aus einem Tutorial, dringelassen für Referenz -->
-    <h1>Hello World!</h1>
-    <p>hier ein paar Komponenten-Demos</p>
-    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-    <MyFirstComponent/>
-    <Button/>
-    <Extended/>
-
-    <Fab on:click={() => clicked++} extended>
-        <Icon class="material-icons">favorite</Icon>
-        <Label>Extended</Label>
-    </Fab>
-    <Fab color="primary" on:click={() => clicked++} extended>
-        <Icon class="material-icons">favorite</Icon>
-        <Label>Extended</Label>
-    </Fab>
-    <div class="margins">
-        <Fab on:click={() => clicked++} extended>
-            <Label>Extended W/o Icon</Label>
-        </Fab>
-    </div>
-    <div class="margins">
-        <Fab color="primary" on:click={() => clicked++} extended>
-            <Label>Extended W/o Icon</Label>
-        </Fab>
-    </div>
-
-    <pre class="status">Clicked: {clicked}</pre>
 </main>
-
 
 <style>
     main {
