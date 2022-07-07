@@ -8,6 +8,7 @@
     import TabBar from '@smui/tab-bar';
     import Tab from '@smui/tab';
     import {user} from "../scripts/stores";
+    import MapTab from "./components/map/MapTab.svelte";
 
     let home = "Home";
     let register = "Registrierung";
@@ -15,9 +16,10 @@
     let testcall = "FAP-Testcall";
     let logout = "Logout";
     let about = "About";
+    let map = "Karte";
     let clicked = 0;
     let active = "Home";
-    let tabs = [home, register, login, testcall, logout, about];
+    let tabs = [home, register, login, map, testcall, logout, about];
 
 </script>
 
@@ -56,6 +58,8 @@
             <FapTestcall/>
         {:else if active === about}
             <h3>Wahnsinns-Projekt!!</h3>
+        {:else if active === map}
+            <MapTab/>
         {/if}
     </div>
 </main>

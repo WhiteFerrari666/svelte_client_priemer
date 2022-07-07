@@ -3,6 +3,7 @@
     import {Map, NavigationControl} from 'maplibre-gl';
     import 'maplibre-gl/dist/maplibre-gl.css';
     import {mapApiKey} from "../../../scripts/secretStore";
+    import {mapComponent} from "../../../scripts/stores";
 
     let map;
     let mapContainer;
@@ -17,12 +18,13 @@
         const initialState = {lng: 7.6261347, lat: 51.9606649, zoom: 14};
 
         // Die eigentliche Karte
-        map = new Map({
+        $mapComponent = new Map({
             container: mapContainer,
             style: `https://api.maptiler.com/maps/streets/style.json?key=${apiKey}`,
             center: [initialState.lng, initialState.lat],
             zoom: initialState.zoom
         });
+        map = $mapComponent;
         // Steuerungswerkzeuge für Zoom, etc.
         map.addControl(new NavigationControl(), 'top-right');
 

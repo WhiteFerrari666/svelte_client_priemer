@@ -1,4 +1,5 @@
 import {readable, writable} from "svelte/store";
+import {Map} from 'maplibre-gl';
 
 // HowTo siehe hier: https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Svelte_stores
 
@@ -31,3 +32,6 @@ currentSession.subscribe(value => {
     console.log("new session set: " + value);
 })
 
+// Map-Komponente in Store hinterlegen, um sie woanders erreichen zu können
+export const mapComponent = writable(Map, () => {
+})
