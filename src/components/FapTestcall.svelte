@@ -3,12 +3,13 @@
 <script lang="ts">
     import Button from '@smui/button';
     import {fapServerBaseURL} from '../../scripts/stores';
-    import {getOrtForPlz} from "../service/FapServerQueryService";
+    import {getKoordinatenFuerAdresse, getOrtForPlz} from "../service/FapServerQueryService";
 
     let responseOutput = "Noch keine Antwort erhalten!";
     let responseOutputOrt = "";
 
     let ortResult = "";
+    let koordinatenResult = "";
 
     async function callFapApiForOrt() {
         ortResult = await getOrtForPlz("41238");
@@ -32,6 +33,15 @@
     function resetResult() {
         responseOutput = "Noch keine Antwort erhalten!";
     }
+
+    async function callForCoordinates() {
+        let callResult = await getKoordinatenFuerAdresse("48151", "Münster", "Scharnhorststraße 85");
+        koordinatenResult = "lat " + callResult.breitengrad + ", long " + callResult.laengengrad;
+    }
+
+    function resetKoordinaten() {
+        koordinatenResult = "";
+    }
 </script>
 <div>
     <h3 id="testcall">Testcall zum FAP-Server</h3>
@@ -51,4 +61,13 @@
     </Button>
     <Button variant="raised" on:click={() => resetOrt()}>Reset</Button>
     <label for="ort">{ortResult}</label>
+</div>
+
+<div>
+    <h3 id="koordinaten">Koordinaten-Test</h3>
+    <Button color="secondary" variant="raised" on:click={() => callForCoordinates()}>
+        Do it!
+    </Button>
+    <Button variant="raised" on:click={() => resetKoordinaten()}>Reset</Button>
+    <label for="koordinaten">{koordinatenResult}</label>
 </div>

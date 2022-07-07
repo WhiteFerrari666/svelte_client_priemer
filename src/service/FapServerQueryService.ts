@@ -62,3 +62,23 @@ export async function isUsernameVerfuegbar(username: string): Promise<boolean> {
     console.log("Username " + username + " verfügbar: " + result);
     return result;
 }
+
+
+export async function getKoordinatenFuerAdresse(plz: string, ort: string, strasse: string) {
+    let result: KoordinatenResponse;
+    await fetch(baseUrl + '/getStandortPerAdresse?land=Deutschland&plz=' + plz + '&ort='
+        + ort + '&strasse=' + strasse)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            result = data as KoordinatenResponse;
+        })
+    console.log("Koordinaten laut FAP-Server: lat " + result.breitengrad + " lng " + result.laengengrad);
+    return result;
+
+}
+
+interface KoordinatenResponse {
+    "breitengrad": string,
+    "laengengrad": string
+}
