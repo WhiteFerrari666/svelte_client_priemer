@@ -49,25 +49,25 @@
 </div>
 <br>
 <div>
-    <Button color="secondary" variant="raised" on:click={() => handleTestCall()}>Test!</Button>
-    <Button variant="raised" on:click={() => resetResult()}>Reset</Button>
+    <Button color="secondary" on:click={() => handleTestCall()} variant="raised">Test!</Button>
+    <Button on:click={() => resetResult()} variant="raised">Reset</Button>
 </div>
 <label for="testcall">{responseOutput}</label>
 <br>
 <div>
     <h3 id="ort">Ort from FAP für PLZ 41238</h3>
-    <Button color="secondary" variant="raised" on:click={() => callFapApiForOrt()}>
+    <Button color="secondary" on:click={() => callFapApiForOrt()} variant="raised">
         Do it!
     </Button>
-    <Button variant="raised" on:click={() => resetOrt()}>Reset</Button>
+    <Button on:click={() => resetOrt()} variant="raised">Reset</Button>
     <label for="ort">{ortResult}</label>
 </div>
 <br>
 <div>
     <h3 id="koordinaten">Koordinaten-Test für mein trautes Heim</h3>
-    <Button color="secondary" variant="raised" on:click={() => callForCoordinates()}>
+    <Button color="secondary" on:click={() => callForCoordinates()} variant="raised">
         Do it!
     </Button>
-    <Button variant="raised" on:click={() => resetKoordinaten()}>Reset</Button>
+    <Button on:click={() => resetKoordinaten()} variant="raised">Reset</Button>
     <label for="koordinaten">{koordinatenResult}</label>
 </div>

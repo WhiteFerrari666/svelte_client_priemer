@@ -37,7 +37,7 @@
     <br>
     <div>
         <!--   bind-Variable MUSS active heißen - wird sonst nicht gefunden/aktualisiert!     -->
-        <TabBar tabs={tabs} let:tab bind:active>
+        <TabBar bind:active let:tab tabs={tabs}>
             <Tab {tab}>
                 <Label>{tab}</Label>
             </Tab>

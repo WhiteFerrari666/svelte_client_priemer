@@ -48,7 +48,7 @@
 
 
 <div class="logout">
-    <Button variant="raised" on:click={handleLogout}>
+    <Button on:click={handleLogout} variant="raised">
         <Label>Logout</Label>
         <Icon class="material-icons">logout</Icon>
     </Button>

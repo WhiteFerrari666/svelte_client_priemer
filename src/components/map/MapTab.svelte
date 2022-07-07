@@ -41,11 +41,11 @@
 
 </script>
 
-<Button variant="raised" on:click={() => (open = true)}>
+<Button on:click={() => (open = true)} variant="raised">
     <Label>Neuer Marker</Label>
 </Button>
 
-<Dialog bind:open aria-labelledby="marker-title" aria-describedby="marker-content">
+<Dialog aria-describedby="marker-content" aria-labelledby="marker-title" bind:open>
     <Title id="marker-title">Daten erfassen</Title>
     <Content id="marker-content">
         <div class="marker-data">
@@ -65,7 +65,7 @@
         <Button>
             <Label>Abbrechen</Label>
         </Button>
-        <Button variant="raised" on:click={() => addMarker()}>
+        <Button on:click={() => addMarker()} variant="raised">
             <Label>Marker setzen</Label>
             <Icon class="material-icons">push_pin</Icon>
         </Button>

@@ -53,7 +53,7 @@
     <Textfield bind:value={password} label="Passwort"/>
     <br/>
     <br/>
-    <Button variant="raised" on:click={handleFapLogin}>
+    <Button on:click={handleFapLogin} variant="raised">
         <Label>Login</Label>
         <Icon class="material-icons">login</Icon>
     </Button>

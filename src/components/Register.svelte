@@ -93,11 +93,11 @@
 
 </script>
 
-<Button variant="raised" on:click={() => (open = true)}>
+<Button on:click={() => (open = true)} variant="raised">
     <Label>Registrieren</Label>
 </Button>
 
-<Dialog bind:open aria-labelledby="register-title" aria-describedby="register-content" fullscreen>
+<Dialog aria-describedby="register-content" aria-labelledby="register-title" bind:open fullscreen>
     <Title id="register-title">Daten erfassen</Title>
     <Content id="register-content">
         <div class="register">
@@ -152,7 +152,7 @@
         <Button>
             <Label>Abbrechen</Label>
         </Button>
-        <Button variant="raised" on:click={() => sendRegistration()}>
+        <Button on:click={() => sendRegistration()} variant="raised">
             <Label>Absenden</Label>
             <Icon class="material-icons">send</Icon>
         </Button>

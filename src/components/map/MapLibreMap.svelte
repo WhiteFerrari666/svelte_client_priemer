@@ -38,9 +38,9 @@
 
 
 <div class="map-wrap">
-    <a href="https://www.maptiler.com" class="watermark"><img
-            src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"/></a>
-    <div class="map" id="map" bind:this={mapContainer}></div>
+    <a class="watermark" href="https://www.maptiler.com"><img
+            alt="MapTiler logo" src="https://api.maptiler.com/resources/logo.svg"/></a>
+    <div bind:this={mapContainer} class="map" id="map"></div>
 </div>
 
 <style>
