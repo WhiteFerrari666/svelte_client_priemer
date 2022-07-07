@@ -62,9 +62,9 @@
     <Button variant="raised" on:click={() => resetOrt()}>Reset</Button>
     <label for="ort">{ortResult}</label>
 </div>
-
+<br>
 <div>
-    <h3 id="koordinaten">Koordinaten-Test</h3>
+    <h3 id="koordinaten">Koordinaten-Test für mein trautes Heim</h3>
     <Button color="secondary" variant="raised" on:click={() => callForCoordinates()}>
         Do it!
     </Button>

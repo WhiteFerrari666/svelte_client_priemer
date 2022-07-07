@@ -97,7 +97,7 @@
     <Label>Registrieren</Label>
 </Button>
 
-<Dialog bind:open aria-labelledby="register-title" aria-describedby="simple-content">
+<Dialog bind:open aria-labelledby="register-title" aria-describedby="register-content" fullscreen>
     <Title id="register-title">Daten erfassen</Title>
     <Content id="register-content">
         <div class="register">
@@ -146,16 +146,17 @@
                 </Textfield>
             </div>
         </div>
-        <Actions>
-            <Button>
-                <Label>Abbrechen</Label>
-            </Button>
-            <Button variant="raised" on:click={() => sendRegistration()}>
-                <Label>Absenden</Label>
-                <Icon class="material-icons">send</Icon>
-            </Button>
-        </Actions>
     </Content>
+
+    <Actions>
+        <Button>
+            <Label>Abbrechen</Label>
+        </Button>
+        <Button variant="raised" on:click={() => sendRegistration()}>
+            <Label>Absenden</Label>
+            <Icon class="material-icons">send</Icon>
+        </Button>
+    </Actions>
 </Dialog>
 
 <Snackbar bind:this={feedbackSnackbar} labelText={snackbarText} timeout={3}>
